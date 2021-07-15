@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:mysql://pfa-desafio-mysql:3306/pfa_docker_desafio_1
+    username: root
+    password: my-secret-pw
+    driverClassName: com.mysql.jdbc.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+
+server:
+  port: 8081
