@@ -19,3 +19,6 @@ Description: exposes via nginx an application which returns course modules from 
  - cd nginx
  - docker build . -t leormiguel/pfa-docker-desafio-1-nginx
  - docker run --rm --network desafio-1-network --name pfa-desafio-nginx -p 8080:8080 -d leormiguel/pfa-docker-desafio-1-nginx
+
+## Test the system
+ - Go to your browser and type: http://localhost:8080
