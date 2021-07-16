@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  pfa-desafio-mysql:
+    container_name: pfa-desafio-mysql
+    image: mysql:5.7.24
+    environment:
+      - MYSQL_ROOT_PASSWORD=my-secret-pw
+    volumes:
+      - ./mysql/scripts:/docker-entrypoint-initdb.d
+      - ./mysql/dbdata:/var/lib/mysql
+    networks:
+      - pfa-mysql-net
+
+  pfa-desafio-java:
+    container_name: pfa-desafio-java
+    build: .
+    depends_on:
+      - pfa-desafio-mysql
+    networks:
+      - pfa-mysql-net
+      - pfa-nginx-net
+
+  pfa-desafio-nginx:
+    container_name: pfa-desafio-nginx
+    build: ./nginx
+    ports:
+      - 8000:8080
+    depends_on:
+      - pfa-desafio-java
+    networks:
+      - pfa-nginx-net
+
+networks:
+  pfa-mysql-net:
+    driver: bridge
+  pfa-nginx-net:
+    driver: bridge
