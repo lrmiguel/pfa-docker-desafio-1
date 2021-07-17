@@ -24,6 +24,8 @@ services:
   pfa-desafio-nginx:
     container_name: pfa-desafio-nginx
     build: ./nginx
+    restart: always
+    entrypoint: dockerize -wait http://pfa-desafio-java:8081 nginx -g 'daemon off;'
     ports:
       - 8000:8080
     depends_on:

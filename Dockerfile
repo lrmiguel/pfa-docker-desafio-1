@@ -16,4 +16,5 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSI
 RUN addgroup -S spring && adduser -S spring -G spring
 USER spring:spring
 
-CMD ["dockerize", "-wait", "tcp://pfa-desafio-mysql:3306", "java", "-jar", "./build/libs/app.jar"]
+ENTRYPOINT ["dockerize", "-wait", "tcp://pfa-desafio-mysql:3306"]
+CMD ["java", "-jar", "./build/libs/app.jar"]
